@@ -4,6 +4,8 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -12,15 +14,21 @@ class User extends Authenticatable
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
+    const NAME = "name";
+    const EMAIL = "email";
+    const PASSWORD = "password";
+    const USERNAME = "username";
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        self::NAME,
+        self::EMAIL,
+        self::PASSWORD,
+        self::USERNAME
     ];
 
     /**
@@ -29,7 +37,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'password',
+        self::PASSWORD,
         'remember_token',
     ];
 
@@ -42,7 +50,19 @@ class User extends Authenticatable
     {
         return [
             'email_verified_at' => 'datetime',
-            'password' => 'hashed',
+            self::PASSWORD => 'hashed',
         ];
+    }
+
+    public function teams(): BelongsToMany {
+        return $this->belongsToMany(Team::class);
+    }
+
+    public function createdNotes() : HasMany {
+        return $this->hasMany(Note::class);
+    }
+
+    public function responsibleNotes(): HasMany {
+        return $this->hasMany(Note::class);
     }
 }
