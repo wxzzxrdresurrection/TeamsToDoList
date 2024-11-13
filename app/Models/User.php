@@ -14,7 +14,6 @@ class User extends Authenticatable
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
-    const NAME = "name";
     const EMAIL = "email";
     const PASSWORD = "password";
     const USERNAME = "username";
@@ -25,7 +24,6 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        self::NAME,
         self::EMAIL,
         self::PASSWORD,
         self::USERNAME
@@ -59,10 +57,10 @@ class User extends Authenticatable
     }
 
     public function createdNotes() : HasMany {
-        return $this->hasMany(Note::class);
+        return $this->hasMany(Task::class);
     }
 
     public function responsibleNotes(): HasMany {
-        return $this->hasMany(Note::class);
+        return $this->hasMany(Task::class);
     }
 }

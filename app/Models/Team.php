@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Team extends Model
 {
+    use HasFactory;
 
     const NAME = "name";
     const OWNER_ID = "owner_id";
@@ -33,6 +35,6 @@ class Team extends Model
     }
 
     public function notes(): HasMany {
-        return $this->hasMany(Note::class);
+        return $this->hasMany(Task::class);
     }
 }

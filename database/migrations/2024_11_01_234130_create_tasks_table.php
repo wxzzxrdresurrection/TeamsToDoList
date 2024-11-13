@@ -11,17 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('notes', function (Blueprint $table) {
+        Schema::create('tasks', function (Blueprint $table) {
             $table->id();
             $table->string('title',100);
-            $table->text('body');
+            $table->text('body')->nullable();
             $table->unsignedBigInteger('responsible_id');
-            $table->foreignId('team_id')->constrained()->onDelete('cascade');
+            $table->unsignedBigInteger('team_id');
             $table->boolean('is_completed')->default(false);
             $table->timestamp('completed_at')->nullable();
-            $table->foreignId('created_by')->constrained('users')->onDelete('cascade');
+            $table->unsignedBigInteger('created_by');
             $table->timestamps();
 
+            $table->foreign('team_id')->references('id')->on('teams')->onDelete('cascade');
+            $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('responsible_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
@@ -31,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('notes');
+        Schema::dropIfExists('tasks');
     }
 };

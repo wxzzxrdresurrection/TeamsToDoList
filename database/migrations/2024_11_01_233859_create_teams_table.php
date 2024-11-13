@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('name',100);
             $table->text('description')->nullable();
             $table->string('code')->unique();
-            $table->string('icon');
+            $table->string('icon')->nullable();
             $table->timestamps();
 
             $table->foreign('owner_id')->references('id')->on('users')->onDelete('cascade');
