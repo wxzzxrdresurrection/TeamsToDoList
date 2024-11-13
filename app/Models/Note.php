@@ -13,6 +13,8 @@ class Note extends Model
     const IS_COMPLETED = "is_completed";
     const COMPLETED_AT = "completed_at";
     const CREATED_BY = "created_by";
+    const RESPONSIBLE_ID = "responsible_id";
+    CONST TEAM_ID = "team_id";
 
     /**
      * The attributes that are mass assignable.
@@ -22,6 +24,8 @@ class Note extends Model
     protected $fillable = [
         self::TITLE,
         self::BODY,
+        self::RESPONSIBLE_ID,
+        self::TEAM_ID,
         self::IS_COMPLETED,
         self::COMPLETED_AT,
         self::CREATED_BY
