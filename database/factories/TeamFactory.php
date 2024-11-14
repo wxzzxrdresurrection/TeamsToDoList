@@ -24,7 +24,7 @@ class TeamFactory extends Factory
             Team::NAME => fake()->name(),
             Team::OWNER_ID => 2,
             Team::DESCRIPTION => fake()->sentence(),
-            Team::CODE => fake()->unique()->randomNumber(6),
+            Team::CODE => fake()->unique()->randomNumber(6 ,true),
         ];
     }
 }
