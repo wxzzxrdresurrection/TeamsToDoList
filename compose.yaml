@@ -1,15 +1,26 @@
-# Use root/example as user/password credentials
-version: '3.1'
-
 services:
-
   db:
     image: mysql
-    restart: always
+    container_name: db
     environment:
-      MYSQL_ROOT_PASSWORD: "SiY5Qj4AidNklPD"
-      MYSQL_DATABASE: "TeamsToDoDB"
+      MYSQL_ROOT_PASSWORD: SiY5Qj4AidNklPD
+      MYSQL_DATABASE: TeamsToDoDB
+    networks:
+      - taskly-network
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
-      - "3306:3306"
+      - 8000:8000
+    env_file:
+      - .env
+    depends_on:
+      - db
+    networks:
+      - taskly-network
 
-
+networks:
+  taskly-network:
+    driver: bridge
