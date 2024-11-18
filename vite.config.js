@@ -7,4 +7,8 @@ export default defineConfig({
         laravel(['resources/js/app.jsx']),
         react(),
     ],
+    server: {
+        host: '0.0.0.0',
+        port: 5173,
+    },
 });
