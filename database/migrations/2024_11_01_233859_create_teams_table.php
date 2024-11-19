@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('owner_id')->unsigned();
             $table->string('name',100);
             $table->text('description')->nullable();
-            $table->string('code',6)->unique();
+            $table->string('code',7)->unique();
             $table->string('icon')->nullable();
             $table->timestamps();
 

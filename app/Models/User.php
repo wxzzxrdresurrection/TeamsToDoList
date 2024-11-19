@@ -8,11 +8,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable;
 
     const EMAIL = "email";
     const PASSWORD = "password";
@@ -53,7 +54,7 @@ class User extends Authenticatable
     }
 
     public function teams(): BelongsToMany {
-        return $this->belongsToMany(Team::class);
+        return $this->belongsToMany(Team::class, 'user_teams');
     }
 
     public function createdNotes() : HasMany {
