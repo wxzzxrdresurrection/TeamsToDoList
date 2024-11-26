@@ -14,3 +14,11 @@ Route::get('/new/group', function(){
 Route::get('/tasks', function (){
     return Inertia::render("Tasks");
 });
+
+Route::get('/task/new', function (){
+    return Inertia::render("CreateTask");
+});
+
+Route::get('/register', function (){
+    return Inertia::render("Register");
+});

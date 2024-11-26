@@ -7,6 +7,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: SiY5Qj4AidNklPD
       MYSQL_DATABASE: TeamsToDoDB
+    volumes:
+      - db-data:/var/lib/mysql
     networks:
       - taskly-network
 
@@ -37,3 +39,7 @@ services:
 networks:
   taskly-network:
     driver: bridge
+
+volumes:
+  db-data:
+    driver: local
