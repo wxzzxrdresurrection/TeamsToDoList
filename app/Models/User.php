@@ -18,6 +18,8 @@ class User extends Authenticatable
     const EMAIL = "email";
     const PASSWORD = "password";
     const USERNAME = "username";
+    const CREATED_AT = "created_at";
+    const UPDATED_AT = "updated_at";
 
     /**
      * The attributes that are mass assignable.
@@ -37,6 +39,8 @@ class User extends Authenticatable
      */
     protected $hidden = [
         self::PASSWORD,
+        self::CREATED_AT,
+        self::UPDATED_AT,
         'remember_token',
     ];
 

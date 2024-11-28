@@ -8,9 +8,11 @@ use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Illuminate\Support\Collection;
 use Laravel\Dusk\TestCase as BaseTestCase;
 use PHPUnit\Framework\Attributes\BeforeClass;
+use Illuminate\Foundation\Testing\DatabaseTruncation;
 
 abstract class DuskTestCase extends BaseTestCase
 {
+    use DatabaseTruncation;
     /**
      * Prepare for Dusk test execution.
      */
