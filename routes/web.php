@@ -7,7 +7,7 @@ Route::get('/', function(){
     return Inertia::render("Login");
 });
 
-Route::get('/new/group', function(){
+Route::get('/new/team', function(){
     return Inertia::render("CreateGroup");
 });
 
@@ -21,4 +21,8 @@ Route::get('/task/new', function (){
 
 Route::get('/register', function (){
     return Inertia::render("Register");
+});
+
+Route::get('/teams', function (){
+    return Inertia::render("Teams");
 });
