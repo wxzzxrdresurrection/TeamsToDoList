@@ -14,16 +14,30 @@ RUN chmod +x /usr/local/bin/wait-for-it.sh
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Instalar dependencias del sistema
-RUN apt-get update && apt-get install -y git zip unzip libzip-dev netcat-openbsd
-
-# Instalar las extensiones zip y pcntl de PHP
-RUN docker-php-ext-install zip pcntl pdo_mysql
-
-# Instalar npm
-RUN apt-get update && apt-get install -y npm
+RUN apt-get update && apt-get install -y \
+    git \
+    zip \
+    unzip \
+    libzip-dev \
+    netcat-openbsd \
+    chromium \
+    chromium-driver \
+    xvfb \
+    npm && \
+    docker-php-ext-install zip pcntl pdo_mysql
 
 # Instalar dependencias de PHP y npm
 RUN composer install
 RUN npm install
 
+# Instalar Laravel Dusk
+RUN composer require --dev laravel/dusk && php artisan dusk:install
+
+# Configurar permisos
+RUN chmod -R 777 storage bootstrap/cache
+
+# Exponer puertos
 EXPOSE 8000 5173
+
+# Inicia Xvfb y el servidor
+CMD ["composer run dev"]

@@ -1,4 +1,4 @@
-export default function FormInput({ placeholder, type, setter}) {
+export default function FormInput({ placeholder, type, setter, name }) {
     return (
         <>
             <input
@@ -6,6 +6,7 @@ export default function FormInput({ placeholder, type, setter}) {
                 type={type ?? "text"}
                 placeholder={placeholder}
                 onChange={(e) => setter(e.target.value)}
+                name={name ?? placeholder}
             />
         </>
     );
