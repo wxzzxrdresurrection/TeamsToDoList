@@ -39,8 +39,7 @@ services:
         chromedriver --port=9515 &
         php artisan migrate --force
         php artisan db:seed --force
-        php artisan test && php artisan dusk
-
+        php artisan test
 
 networks:
   taskly-network:

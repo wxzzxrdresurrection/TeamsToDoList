@@ -36,7 +36,7 @@ export default function Tasks() {
     ];
     return (
         <div className="container mx-auto my-auto">
-            <h1 className="grid justify-center mb-8">Tareas</h1>
+            <h1 className="grid justify-center my-8">Tareas</h1>
             <div className="flex flex-col mx-4 mb-3">
                 <p className="text-sm">Mis tareas</p>
             </div>

@@ -57,6 +57,8 @@ export default function Login(){
                 setPasswordError(data.errors.password);
                 return;
             }
+            localStorage.setItem('token', data.token);
+            window.location = '/teams';
         })
         .catch((error) => {
             console.error('Error:', error);

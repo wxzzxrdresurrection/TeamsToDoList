@@ -11,13 +11,14 @@ export default function Teams(){
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
                     //TODO: Change this token to the one you got from the login
-                    'Authorization': 'Bearer 1|aqkNyowmkrB5cItPaGZulJRwF5ZGjffIkfHt8mAP35a9d473'
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
                 }
             }
         ).then(response => response.json())
         .then(data => setTeams(data.data))
         .catch(error => console.log(error));
     }
+
     useEffect(() => {myTeamsRequest()}, []);
 
     return (
