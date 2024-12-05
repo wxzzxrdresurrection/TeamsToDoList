@@ -2,30 +2,25 @@ import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 
-export default function UserPicker() {
+export default function UserPicker({ selectedUser, setSelectedUser }) {
     const [users, setUsers] = useState([]);
-    const [selectedUser, setSelectedUser] = useState(null);
+
     useEffect(() => {
-        fetch("/api/users")
+        const teamId = window.location.pathname.split("/")[3];
+        fetch(`/api/teams/users/${teamId}`,
+            {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${localStorage.getItem("token")}`,
+                }
+            }
+        )
             .then((response) => response.json())
             .then((json) => {
-                //setUsers(json.data);
-                setUsers(fakeUsers);
+                setUsers(json.data);
             });
     }, []);
-
-    const fakeUsers = [
-        { id: 1, username: "Juan" },
-        { id: 2, username: "Pedro" },
-        { id: 3, username: "Pablo" },
-        { id: 4, username: "José" },
-        { id: 5, username: "María" },
-        { id: 6, username: "Ana" },
-        { id: 7, username: "Luis" },
-        { id: 8, username: "Miguel" },
-        { id: 9, username: "Rosa" },
-        { id: 10, username: "Elena"}
-    ];
 
     return (
         <>

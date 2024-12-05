@@ -15,7 +15,7 @@ Route::get('/tasks', function (){
     return Inertia::render("Tasks");
 });
 
-Route::get('/task/new', function (){
+Route::get('/task/new/{id}', function (){
     return Inertia::render("CreateTask");
 });
 
