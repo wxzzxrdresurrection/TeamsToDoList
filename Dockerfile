@@ -26,6 +26,8 @@ RUN apt-get update && apt-get install -y \
     npm && \
     docker-php-ext-install zip pcntl pdo_mysql
 
+ENV PATH="/usr/lib/chromium:/usr/lib/chromium/chromedriver:$PATH"
+
 # Instalar dependencias de PHP y npm
 RUN composer install
 RUN npm install
@@ -40,4 +42,6 @@ RUN chmod -R 777 storage bootstrap/cache
 EXPOSE 8000 5173
 
 # Inicia Xvfb y el servidor
-CMD ["composer run dev"]
+#CMD ["composer run dev"]
+
+CMD /bin/bash
