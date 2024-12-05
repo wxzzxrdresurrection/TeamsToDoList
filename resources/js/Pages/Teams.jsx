@@ -21,6 +21,10 @@ export default function Teams() {
         window.location.href = "/join/team";
     }
 
+    const navigateToTeam = (teamId) => {
+        window.location.href = `/team/${teamId}`;
+    }
+
     useEffect(() => {
         myTeamsRequest();
     }, []);
@@ -35,6 +39,7 @@ export default function Teams() {
                         <div
                             key={team.id}
                             className="border-b border-zinc-700 w-full py-3 hover:cursor-pointer"
+                            onClick={() => navigateToTeam(team.id)}
                         >
                             <p className="text-md">{team.name}</p>
                             <p className="text-md text-zinc-400">

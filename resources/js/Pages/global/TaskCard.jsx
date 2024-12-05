@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 
 export default function TaskCard({ task }) {
     const [completed, setCompleted] = useState(task.completed);
-    
+
     const toggleCompleted = () => {
         setCompleted(!completed);
     };
@@ -26,7 +26,7 @@ export default function TaskCard({ task }) {
                             {task.title}
                         </span>
                     </div>
-                    <p className={"text-sm text-gray-400" }>{task.description}</p>
+                    <p className={"text-sm text-gray-400" }>{task.body}</p>
                 </div>
             </div>
         </div>
