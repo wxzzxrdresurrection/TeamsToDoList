@@ -1,12 +1,14 @@
-import AlternativeButton from "./global/AlternativeButton"
 import ErrorMessage from "./global/ErrorMessage";
 import FormInput from "./global/FormInput"
 import PrimaryButton from "./global/PrimaryButton"
 import SecondaryButton from "./global/SecondaryButton"
 import { Link } from "@inertiajs/react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Login(){
+    useEffect(() => {}, []);
+
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [emailError, setEmailError] = useState('');
@@ -57,8 +59,11 @@ export default function Login(){
                 setPasswordError(data.errors.password);
                 return;
             }
-            localStorage.setItem('token', data.token);
-            window.location = '/teams';
+
+            if (data.status === 'success'){
+                localStorage.setItem('token', data.token);
+                window.location = '/teams';
+            }
         })
         .catch((error) => {
             console.error('Error:', error);

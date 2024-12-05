@@ -7,8 +7,8 @@ Route::get('/', function(){
     return Inertia::render("Login");
 });
 
-Route::get('/new/team', function(){
-    return Inertia::render("CreateGroup");
+Route::get('/join/team', function(){
+    return Inertia::render("CreateOrJoinTeam");
 });
 
 Route::get('/tasks', function (){
@@ -26,3 +26,12 @@ Route::get('/register', function (){
 Route::get('/teams', function (){
     return Inertia::render("Teams");
 });
+
+Route::get('/team/new', function (){
+    return Inertia::render("CreateTeam");
+});
+
+Route::get('/team/{id}', function (){
+    return Inertia::render("TeamTasks");
+});
+

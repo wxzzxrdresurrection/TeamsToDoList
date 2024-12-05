@@ -117,7 +117,7 @@ class RequestValidator
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:50',
             'description' => 'nullable|string|max:255',
-            'icon' => 'required|string'
+            // 'icon' => 'required|string'
         ], [
             'required' => 'El campo :attribute es obligatorio.',
             'string' => 'El campo :attribute debe ser texto.',

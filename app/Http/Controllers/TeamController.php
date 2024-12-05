@@ -62,7 +62,7 @@ class TeamController extends Controller
             Team::OWNER_ID => $userId,
             Team::DESCRIPTION => $request->description,
             Team::CODE => $teamCode,
-            Team::ICON => $request->icon
+            // Team::ICON => $request->icon
         ]);
 
         $team->users()->attach($userId);
