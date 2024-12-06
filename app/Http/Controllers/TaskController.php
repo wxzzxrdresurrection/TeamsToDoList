@@ -164,4 +164,14 @@ class TaskController extends Controller
         $task->delete();
         return ApiResponse::success('Tarea eliminada correctamente', null, null, 200);
     }
+
+    public function getMyTasks(Request $request, int $teamId)
+    {
+        $tasks = Task::where(Task::RESPONSIBLE_ID, $request->user()->id)
+            ->where(Task::TEAM_ID, $teamId)
+            ->orderBy(Task::CREATED_AT, 'desc')
+            ->get();
+
+        return ApiResponse::success('Tareas encontradas correctamente', $tasks, null, 200);
+    }
 }

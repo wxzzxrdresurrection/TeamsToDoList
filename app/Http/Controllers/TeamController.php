@@ -62,7 +62,7 @@ class TeamController extends Controller
             Team::OWNER_ID => $userId,
             Team::DESCRIPTION => $request->description,
             Team::CODE => $teamCode,
-            Team::ICON => $request->icon
+            // Team::ICON => $request->icon
         ]);
 
         $team->users()->attach($userId);
@@ -85,10 +85,11 @@ class TeamController extends Controller
             return ApiResponse::error('Equipo no encontrado', null, 404);
         }
 
-        $team->name = $request->name;
-        $team->description = $request->description;
-        $team->icon = $request->icon;
-        $team->save();
+        Team::where('id', $id)->update([
+            Team::NAME => $request->name,
+            Team::DESCRIPTION => $request->description,
+            Team::ICON => $request->icon
+        ]);
 
         return ApiResponse::success('Equipo actualizado correctamente', $team, null, 200);
     }
@@ -107,7 +108,7 @@ class TeamController extends Controller
         {
             return ApiResponse::error('Equipo no encontrado', null, 404);
         }
-        
+
         $userId = $request->user()->id;
         $isMember = $team->users()->where('user_id', $userId)->exists();
 

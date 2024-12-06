@@ -40,6 +40,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/team/{status}/{id}', [TaskController::class, 'findTasksByTeam']);
         Route::get('/user/{status}/{teamId}/{userId}', [TaskController::class, 'findTasksByUserAndTeam']);
         Route::get('/{id}', [TaskController::class, 'findOne']);
+        Route::get('/{teamId}/user', [TaskController::class, 'getMyTasks']);
         Route::post('/create', [TaskController::class, 'create']);
         Route::put('/{id}', [TaskController::class, 'update']);
         Route::post('/assign/{id}', [TaskController::class, 'addTaskToUser']);

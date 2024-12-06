@@ -7,6 +7,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: SiY5Qj4AidNklPD
       MYSQL_DATABASE: TeamsToDoDB
+    volumes:
+      - db-data:/var/lib/mysql
     networks:
       - taskly-network
 
@@ -14,6 +16,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    tty: true
+    shm_size: '2g'
     ports:
       - 8000:8000
       - 5173:5173
@@ -21,19 +25,26 @@ services:
       - .env
     depends_on:
       - db
+    environment:
+      DISPLAY: ":0"
+      DB_HOST: db
     networks:
       - taskly-network
     entrypoint:
       - /bin/sh
       - -c
       - |
-        /usr/local/bin/wait-for-it.sh db -- \
+        /usr/local/bin/wait-for-it.sh db  \
         php artisan key:generate
+        chromedriver --port=9515 &
         php artisan migrate --force
         php artisan db:seed --force
-        composer run dev
-
+        php artisan test
 
 networks:
   taskly-network:
     driver: bridge
+
+volumes:
+  db-data:
+    driver: local
