@@ -7,8 +7,8 @@ export default function AllTasks() {
     const [tasks, setTasks] = useState([]);
     const [selectedUser, setSelectedUser] = useState(null);
 
-    function getTasks() {
-        fetch("/api/tasks/team/all/1", {
+    function getTasks(id) {
+        fetch(`/api/tasks/team/all/${id}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -22,8 +22,8 @@ export default function AllTasks() {
             });
     }
 
-    function getTeamUsers() {
-        fetch("/api/teams/users/1", {
+    function getTeamUsers(id) {
+        fetch(`/api/teams/users/${id}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -53,8 +53,9 @@ export default function AllTasks() {
     }
 
     useEffect(() => {
-        selectedUser ? getTasksByUser(selectedUser.id) : getTasks();
-        getTeamUsers();
+        const id = window.location.pathname.split("/")[2];
+        selectedUser ? getTasksByUser(selectedUser.id) : getTasks(id);
+        getTeamUsers(id);
     }, [selectedUser]);
 
     return (
