@@ -33,6 +33,14 @@ class Task extends Model
         self::CREATED_BY
     ];
 
+    protected function casts(): array
+    {
+        return [
+            self::IS_COMPLETED => 'boolean',
+            self::COMPLETED_AT => 'datetime'
+        ];
+    }
+
     public function responsible(): BelongsTo {
         return $this->belongsTo(User::class);
     }
