@@ -18,7 +18,7 @@ export default function Settings(){
 
     return(
         <div className="container mx-auto my-auto">
-            <h1 className="grid justify-center my-8">Menu</h1>
+            <h1 className="grid justify-center mb-8">Menu</h1>
             <div className="flex border-y border-zinc-700 p-2 justify-between"
             onClick={() => logout()}>
                 <p>Cerrar sesión</p>

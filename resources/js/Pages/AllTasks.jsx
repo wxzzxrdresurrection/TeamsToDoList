@@ -60,7 +60,7 @@ export default function AllTasks() {
 
     return (
         <div className="container mx-auto my-auto">
-            <h1 className="grid justify-center my-8">Todas las tareas</h1>
+            <h1 className="grid justify-center mb-8">Todas las tareas</h1>
             <div className="w-full mb-2">
                 <UserFilter users={users} selectedUser={selectedUser} setSelectedUser={setSelectedUser}/>
             </div>

@@ -3,6 +3,8 @@ import Settings from "./Settings"
 import Tasks from "./Tasks"
 import AllTasks from "./AllTasks"
 import { useState, useEffect } from "react"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons"
 
 export default function TeamTasks(){
     function createNewTask(){
@@ -10,11 +12,16 @@ export default function TeamTasks(){
         window.location.href = `/task/new/${teamId}`
     }
 
+    const navigateToTeamList = () => {
+        window.location.href = '/teams'
+    }
+
     const [selectedview, setSelectedView] = useState(1)
 
     return (
         <div className="h-full">
-            <div className="flex-grow">
+            <div onClick={navigateToTeamList}>
+                <FontAwesomeIcon icon={ faArrowLeft } className="text-white text-3xl mt-5 ml-5"/>
             </div>
             {selectedview === 1 && <Tasks />}
             {selectedview === 2 && <AllTasks />}
