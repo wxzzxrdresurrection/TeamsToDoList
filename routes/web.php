@@ -32,6 +32,6 @@ Route::get('/team/new', function (){
 });
 
 Route::get('/team/{id}', function (){
-    return Inertia::render("TeamTasks");
+    return Inertia::render("TeamDetail");
 });
 

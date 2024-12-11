@@ -1,6 +1,7 @@
 import Navbar from "./global/Navbar"
 import Settings from "./Settings"
 import Tasks from "./Tasks"
+import AllTasks from "./AllTasks"
 import { useState, useEffect } from "react"
 
 export default function TeamTasks(){
@@ -16,7 +17,7 @@ export default function TeamTasks(){
             <div className="flex-grow">
             </div>
             {selectedview === 1 && <Tasks />}
-            {selectedview === 2 && <div>Tasks</div>}
+            {selectedview === 2 && <AllTasks />}
             {selectedview === 3 && <Settings />}
 
             <button className="fixed bottom-20 bg-zinc-700 rounded-full px-5 py-2 right-2"

@@ -27,6 +27,7 @@ class TaskController extends Controller
         }
 
         $tasks = $query->orderBy(Task::CREATED_AT, 'desc')->get();
+        $tasks->load('responsible');
         return ApiResponse::success('Tareas encontradas correctamente', $tasks, null, 200);
     }
 
@@ -45,6 +46,7 @@ class TaskController extends Controller
         }
 
         $tasks = $query->orderBy(Task::CREATED_AT, 'desc')->get();
+        $tasks->load('responsible');
         return ApiResponse::success('Tareas encontradas correctamente', $tasks, null, 200);
     }
 

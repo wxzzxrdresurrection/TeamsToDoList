@@ -2,7 +2,7 @@ import AlternativeButton from "./global/AlternativeButton";
 import FormInput from "./global/FormInput";
 import PrimaryButton from "./global/PrimaryButton";
 import UserPicker from "./global/UserPicker";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function CreateTask() {
     const [selectedUser, setSelectedUser] = useState(null);
