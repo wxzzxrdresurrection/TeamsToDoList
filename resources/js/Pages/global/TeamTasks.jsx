@@ -6,7 +6,11 @@ export default function TeamTasks({ tasks }) {
                     {tasks.map((task) => (
                         <div className="border-b border-zinc-700 w-full py-3 hover:cursor-pointer"
                         key={task.id}>
-                            <p className="text-md">
+                            <p className={
+                                    task.is_completed
+                                    ? "text-md text-wrap text-ellipsis line-through text-zinc-500"
+                                    : "text-md text-wrap text-ellipsis"
+                            }>
                                 {task.title} - Asignada a: {task.responsible.username}
                             </p>
                             <p className="text-md text-zinc-400"> {task.body}</p>
